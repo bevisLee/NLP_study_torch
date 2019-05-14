@@ -17,9 +17,9 @@ tr.to_csv(proj_dir / 'data' / 'train.txt', sep='\t', index=False)
 val.to_csv(proj_dir / 'data' / 'val.txt', sep='\t', index=False)
 
 tst_filepath = proj_dir / 'data/ratings_test.txt'
-
-
-
+tst = pd.read_csv(tst_filepath, sep='\t').loc[:, ['document', 'label']]
+tst = tst.loc[tst['document'].isna().apply(lambda elm: not elm), :]
+tst.to_csv(proj_dir / 'data' / 'test.txt', sep='\t', index=False)
 
 
 
